@@ -98,7 +98,7 @@ int main(int argc, char **argv)
 
         if(strcmp(argv[i], "-file") == 0){ //comparo strings si es igual a 0 estoy en el archivo y imprime nombre archivo...
             cout << "Nombre del Archivo: " << argv[i+1] << endl;
-            //exploreHeaders(argv[i+1]);
+            exploreHeaders(argv[i+1]);
             exploreCSV(argv[i+1]);
             break;
         }
