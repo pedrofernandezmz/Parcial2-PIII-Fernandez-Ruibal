@@ -2,7 +2,11 @@
 #include <fstream> //permite manejo de archivos
 #include <sstream>
 #include "string.h"
+#include "ctime"
 #include <vector> //clase lista (es lo mismo)
+#include "Argumentos/estad.h"
+#include "Argumentos/p_casos.h"
+#include "Argumentos/p_muertes.h"
 
 using namespace std;
 
@@ -89,7 +93,7 @@ void exploreHeaders(string fileName) //me muevo en la primera fila y obtengo nom
 
 int main(int argc, char **argv)
 {
-
+    time_t start = time(NULL);
     cout << "Cantidad de argumentos: " << argc << endl;
     for (int i = 0; i < argc; i++)
     {
@@ -98,12 +102,19 @@ int main(int argc, char **argv)
 
         if(strcmp(argv[i], "-file") == 0){ //comparo strings si es igual a 0 estoy en el archivo y imprime nombre archivo...
             cout << "Nombre del Archivo: " << argv[i+1] << endl;
-            exploreHeaders(argv[i+1]);
-            exploreCSV(argv[i+1]);
+            //exploreHeaders(argv[i+1]);
+            //exploreCSV(argv[i+1]);
+            estad(argv[i+1]);
+            //int n;
+            //cout<<"ingrese n: ";
+            //cin>>n;
+            //p_casos(n, argv[i+1]);
+            //p_muertes(n, argv[i+1]);
             break;
         }
         
     }
-
+    time_t end = time(NULL);
+    cout<<"\nSegundos para correr el argumento: "<<end-start<<" \n\n";
     return 0;
 }

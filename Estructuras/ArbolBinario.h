@@ -34,7 +34,7 @@ private:
   T search(T data, NodoArbol<T> *r);
   NodoArbol<T> *put(T data, NodoArbol<T> *r);
   NodoArbol<T> *remove(T data, NodoArbol<T> *r);
-  NodoArbol<T> *findMax(NodoArbol<T> *r, bool *found);
+  NodoArbol<T> *findMaxAndRemove(NodoArbol<T> *r, bool *found);
   void preorder(NodoArbol<T> *r);
   void inorder(NodoArbol<T> *r);
   void postorder(NodoArbol<T> *r);
@@ -169,7 +169,7 @@ NodoArbol<T> *ArbolBinario<T>::remove(T data, NodoArbol<T> *r)
       {
         // Aca tenemos que buscar el valor maximo
         bool found;
-        aux = findMax(r->getLeft(), &found);
+        aux = findMaxAndRemove(r->getLeft(), &found);
         aux->setRight(r->getRight());
         aux->setLeft(r->getLeft());
       }
@@ -195,7 +195,7 @@ NodoArbol<T> *ArbolBinario<T>::remove(T data, NodoArbol<T> *r)
 }
 
 template <class T>
-NodoArbol<T> *ArbolBinario<T>::findMax(NodoArbol<T> *r, bool *found)
+NodoArbol<T> *ArbolBinario<T>::findMaxAndRemove(NodoArbol<T> *r, bool *found)
 {
   NodoArbol<T> ret;
   *found = false;
@@ -206,7 +206,7 @@ NodoArbol<T> *ArbolBinario<T>::findMax(NodoArbol<T> *r, bool *found)
     return r;
   }
 
-  ret = findMax(r->getRight(), found);
+  ret = findMaxAndRemove(r->getRight(), found);
   if (*found)
   {
     r->setRight(nullptr);
@@ -227,7 +227,11 @@ bool ArbolBinario<T>::esVacio() { return root == nullptr; }
  * Recorre un árbol en preorden
  */
 template <class T>
-void ArbolBinario<T>::preorder() { preorder(root); }
+void ArbolBinario<T>::preorder()
+{
+  preorder(root);
+  std::cout << std::endl;
+}
 
 template <class T>
 void ArbolBinario<T>::preorder(NodoArbol<T> *r)
@@ -249,6 +253,7 @@ template <class T>
 void ArbolBinario<T>::inorder()
 {
   inorder(root);
+  std::cout << std::endl;
 }
 
 template <class T>
@@ -271,6 +276,7 @@ template <class T>
 void ArbolBinario<T>::postorder()
 {
   postorder(root);
+  std::cout << std::endl;
 }
 
 template <class T>
@@ -290,6 +296,10 @@ void ArbolBinario<T>::postorder(NodoArbol<T> *r)
  * Muestra un árbol por consola
  */
 template <class T>
-void ArbolBinario<T>::print() {}
+void ArbolBinario<T>::print()
+{
+  if (root != NULL)
+    root->print(false, "");
+}
 
 #endif // U05_ARBOL_ARBOL_ARBOLBINARIO_H_

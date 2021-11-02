@@ -39,6 +39,9 @@ public:
   void vaciar();
 
   void print();
+
+  Nodo<T> *getinicio() const;
+  void next() { inicio = inicio->getSiguiente(); }
 };
 
 /**
@@ -270,6 +273,11 @@ bool Lista<T>::insertAfter2(int oldValue, int n, int newValue) {
         posActual++;
     }
     return false;
+}
+
+template<class T>
+Nodo<T> *Lista<T>::getinicio() const {
+    return inicio;
 }
 
 #endif // U02_LISTAS_LISTA_LISTA_H_

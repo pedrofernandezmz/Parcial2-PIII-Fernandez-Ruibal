@@ -1,60 +1,69 @@
-#ifndef U05_ARBOL_ARBOL_NODOARBOL_H_
-#define U05_ARBOL_ARBOL_NODOARBOL_H_
+#ifndef U05_ARBOL_ARBOL_NODOARBOLAVL_H_
+#define U05_ARBOL_ARBOL_NODOARBOLAVL_H_
 
 #include <string.h>
 using namespace std;
 
 template <class T>
-class NodoArbol
+class NodoArbolAVL
 {
 private:
+  NodoArbolAVL<T> *left, *right;
   T data;
-  NodoArbol *left, *right;
+  int height;
 
 public:
-  NodoArbol()
+  NodoArbolAVL()
   {
     left = nullptr;
     right = nullptr;
+    height=1;
   }
 
-  NodoArbol(T d)
+  explicit NodoArbolAVL(T data) : data(data)
   {
-    data = d;
+    //data = d;
     left = nullptr;
     right = nullptr;
+    height=1;
   }
 
-  T getData() const
+  T &getData() { return data; }
+
+  void setData(T data)
   {
-    return data;
+    this->data = data;
   }
 
-  void setData(T d)
-  {
-    this->data = d;
-  }
-
-  NodoArbol *getRight() const
+  NodoArbolAVL<T> *getRight() const
   {
     return right;
   }
 
-  void setRight(NodoArbol *r)
+  void setRight(NodoArbolAVL<T> *r)
   {
     this->right = r;
   }
-  NodoArbol *getLeft() const
+  NodoArbolAVL *getLeft() const
   {
     return left;
   }
 
-  void setLeft(NodoArbol *l)
+  void setLeft(NodoArbolAVL *l)
   {
     this->left = l;
   }
 
-   void print(bool esDerecho, string identacion) {
+  int getHeight() const 
+  {
+    return height;
+  }
+
+  void setHeight(int h){
+    height = h;
+  }
+
+  void print(bool esDerecho, string identacion) {
     if (right != NULL) {
         right->print(true, identacion + (esDerecho ? "     " : "|    "));
     }
@@ -71,6 +80,6 @@ public:
     }
 }
 
-  };
+};
 
-#endif // U05_ARBOL_ARBOL_NODOARBOL_H_
+#endif // U05_ARBOL_ARBOL_NODOARBOLAVL_H_
