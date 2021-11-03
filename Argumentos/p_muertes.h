@@ -12,11 +12,11 @@
 using namespace std;
 
 /**
- * Muestra las n primeras provincias con más muertes ordenadas
-de más a menos. Si n no es pasado, se mostrarán todas las provincias.
- * @param n variable int que me permitirá la muestra de las primeras provincias con mayor muertes
- * @param f variable string opción argumento ingresado por el usuario
- * @return lista de provincias ordenadas de más a menos
+ * Muestra las n primeras provincia con más muertes ordenadas
+de más a menos. Sin n se muestran todas las provincia.
+ * @param n variable int que me permitirá la muestra de las primeras provincia con mayor muertes
+ * @param fileName variable string csv ingresado por el usuario
+ * @return lista de provincia ordenadas de máyor a menor
  */
 
 void p_muertes(int n, string fileName) {
@@ -34,14 +34,14 @@ void p_muertes(int n, string fileName) {
     for (int i = 0; i < 25; i++)
     {
         muertes[i].push_back(Provincias[i]);
-    }
+    }//a muertes le doy el nombre de cada provincia
 
     for (int i = 0; i < 25; i++)
     {
         sumaprovincias[i] = 0;
-    }
+    }//a cada provincia la inicio en 0
 
-    while (getline(fin, word, ',')) { //mientras haya algo que leer
+    while (getline(fin, word, ',')) { //mientras haya algo para leer
     for(int i=0; i<4; i++){
             getline(fin, word, ',');
         }
@@ -70,9 +70,9 @@ void p_muertes(int n, string fileName) {
     for (int i = 0; i < 25; i++)
     {
         muertes[i].push_back(to_string(sumaprovincias[i]));
-    }
+    }//agrego a muertes la cantidad de la suma de casos de cada provincia
 
-    quickSort(muertes, 0, 24);
+    quickSort(muertes, 0, 24);//quicksort para ordenar de mayor a menor le paso muertes y el inicio y fin (25 provs)
 
     if (n == 0) {
         cout<<"Todas las provincias con más muertes ordenadas de más a menos son:"<<endl;

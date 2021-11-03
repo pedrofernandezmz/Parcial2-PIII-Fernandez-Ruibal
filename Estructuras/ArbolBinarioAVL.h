@@ -118,13 +118,9 @@ NodoArbolAVL<T> *ArbolBinarioAVL<T>::put(T data, NodoArbolAVL<T> *r)
   {
     return new NodoArbolAVL<T>(data);
   }
+  
 
-  if (r->getData() == data)
-  {
-    throw 200;
-  }
-
-  if (r->getData() > data)
+  if (r->getClave() >= stoi(data[17]))
   {
     r->setLeft(put(data, r->getLeft()));
   }
@@ -136,37 +132,43 @@ NodoArbolAVL<T> *ArbolBinarioAVL<T>::put(T data, NodoArbolAVL<T> *r)
   //2. Actualizar altura de este nodo padre
   r->setHeight(max(calculateHeight(r->getLeft()), calculateHeight(r->getRight())) + 1);
 
+
   //3. Obtener el factor de balance de este nodo padre
   // y chequear si este nodo se desbalanceo
   int balance = getBalance(r);
 
   //Quedo desbalanceado II: corresponde una rot Der
-  if (balance > 1 && data < r->getLeft()->getData())
+  if (balance > 1 && stoi(data[17]) <= r->getLeft()->getClave())
   {
+    //std::cout<<"Rotacion derecha"<<std::endl;
     return rotacionDerecha(r);
   }
 
   //Quedo desbalanceado ID: corresponde una rot Izq Der
-  if (balance > 1 && data > r->getLeft()->getData())
+  if (balance > 1 && stoi(data[17]) > r->getLeft()->getClave())
   {
+    //std::cout<<"Rotacion izq der"<<std::endl;
     r->setLeft(rotacionIzquierda(r->getLeft()));
     return rotacionDerecha(r);
   }
 
   //Quedo desbalanceado DD: corresponde una rot Izq
-  if (balance < -1 && data > r->getRight()->getData())
+  if (balance < -1 && stoi(data[17]) >= r->getRight()->getClave())
   {
+    //std::cout<<"Rotacion izq"<<std::endl;
     return rotacionIzquierda(r);
   }
 
   //Quedo desbalanceado DI: corresponde una rot Der Izq
-  if (balance < -1 && data < r->getRight()->getData())
+  if (balance < -1 && stoi(data[17]) <= r->getRight()->getClave())
   {
+    //std::cout<<"Rotacion der izq"<<std::endl;
     r->setRight(rotacionDerecha(r->getRight()));
     return rotacionIzquierda(r);
   }
 
   return r;
+  
 }
 
 /**
@@ -331,7 +333,8 @@ void ArbolBinarioAVL<T>::inorder(NodoArbolAVL<T> *r)
   }
 
   inorder(r->getLeft());
-  std::cout << r->getData() << " ";
+  //std::cout << r->getData() << " ";
+  r->print2();
   inorder(r->getRight());
 }
 

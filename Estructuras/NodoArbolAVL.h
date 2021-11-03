@@ -8,8 +8,8 @@ template <class T>
 class NodoArbolAVL
 {
 private:
+  vector<string> data;
   NodoArbolAVL<T> *left, *right;
-  T data;
   int height;
 
 public:
@@ -33,6 +33,10 @@ public:
   void setData(T data)
   {
     this->data = data;
+  }
+  int getClave()
+  {
+    return stoi(data[17]);
   }
 
   NodoArbolAVL<T> *getRight() const
@@ -79,6 +83,20 @@ public:
         left->print(false, identacion + (esDerecho ? "|    " : "     "));
     }
 }
+
+void print2(){
+         
+    int colsOfInterest[] = {2, 3, 7, 12, 13, 14, 17, 20};
+    int nColumns = sizeof(colsOfInterest) / sizeof(colsOfInterest[0]);
+            cout<<"Edad: "<<data[colsOfInterest[0]]<<" ";
+            cout<<data[colsOfInterest[1]]<<"   ";
+            cout<<"Provincia: "<<data[colsOfInterest[2]]<<"   ";
+            cout<<"CUI: "<<data[colsOfInterest[3]]<<"   ";
+            cout<<"Fecha CUI: "<<data[colsOfInterest[4]]<<"   ";
+            cout<<"Murio: "<<data[colsOfInterest[5]]<<"   ";
+            cout<<"Estado: "<<data[colsOfInterest[7]];
+            cout << endl;
+    }
 
 };
 

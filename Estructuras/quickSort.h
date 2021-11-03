@@ -42,5 +42,4 @@ void quickSort(vector<string> arr[], int inicio, int fin)
   if (i < fin)
     quickSort(arr, i, fin);
 }
-
 #endif //PARCIAL2_PIII_FERNANDEZ_RUIBAL_QUICKSORT_H

@@ -5,15 +5,13 @@
 #include <fstream> //permite manejo de archivos
 #include <string.h>
 #include <sstream>
-#include "../Estructuras/ArbolBinarioAVL.h"
-#include "../Estructuras/rango.h"
 
 using namespace std;
 
 /**
  * Permite la muestra de información estadística
- * @param f = variable string opción argumento ingresado por el usuario
- * @return árbol binario y muestra de información estadística
+ * @param fileName = variable string csv ingresado por el usuario
+ * @return muestra la información estadística
  */
 int estad(string fileName) {
     fstream fin;
@@ -31,9 +29,9 @@ int estad(string fileName) {
         EdadI[i]=0;
     }
 
-    while (getline(fin, word, ',')) { //mientras haya algo que leer
+    while (getline(fin, word, ',')) { //mientras haya algo para leer
         total++;
-        getline(fin, word, ','); //Genero
+        getline(fin, word, ',');
         getline(fin, word, ','); //Edad
         try {
             edad = std::stoi(word.substr(1, word.size() - 2)); //std::stoi pasa string a int
@@ -47,7 +45,7 @@ int estad(string fileName) {
 
         for(int i=0; i<11; i++){
             getline(fin, word, ',');
-        }
+        }//llego hasta fallecidos ordeno en arreglo segun etario
         if (word.substr(1, word.size() - 2) == "SI") {
             fallecidos++;
                 if(edad>=0 && edad<=9){
@@ -87,7 +85,7 @@ int estad(string fileName) {
         for(int i=0; i<6; i++){
             getline(fin, word, ',');
         }
-
+        //llego hasta infectados ordeno en arreglo segun etario
         if (word.substr(1, word.size() - 2) == "Confirmado") {
             infectados++;
             if(edad>=0 && edad<=9){
@@ -127,7 +125,7 @@ int estad(string fileName) {
         for(int i=0; i<3; i++){
             getline(fin, word, ',');
         }
-        getline(fin, word);
+        getline(fin, word);//llego al final
     }
 
     cout << "Cantidad total de muestras: " << total << endl;
