@@ -59,11 +59,10 @@ ArbolBinario<vector <string> > arbol;
         {
             fecha2 = fechaint(row[13]);
 
-            if(fecha<fecha2){
+            if(fecha<=fecha2){
               arbol.put(row);
             }
-        }
-        
+        } 
     }
     arbol.inorder();
 }
