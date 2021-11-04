@@ -7,26 +7,18 @@
 #include "string.h"
 #include <vector>
 #include <string.h>
+#include <algorithm>
 
 using namespace std;
 /**
- * Convierte fecha a int ---> 08-08-2020 a 08082020
+ * Convierte fecha a int ---> 08-08-2020 a 08082020 (sacada de internet)
  * @param fecha fecha en formato string
  * @return devuelve la fecha en formato int
  */
 
 int fechaint(string fecha){
-int n=fecha.size();
-int i=0;
-string fecha_;
-for(int j = 0; j<n; j++){
-int x = fecha[j];
-if(x>=48 && x<=57){
-fecha_[i] = fecha[j];
-i++;
-}
-}
-return stoi(fecha_);
-}
+   fecha.erase(remove(fecha.begin(), fecha.end(), '-'), fecha.end()); //saca caracter "-" de la fecha 
+   return stoi(fecha);
+   }
 
 #endif //PARCIAL2_PIII_FERNANDEZ_RUIBAL_FECHA_H

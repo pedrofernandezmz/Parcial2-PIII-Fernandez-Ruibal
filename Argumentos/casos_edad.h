@@ -20,9 +20,6 @@ using namespace std;
 
 void casos_edad(int n, string fileName) {
 
-    int colsOfInterest[] = {0, 2, 3, 5, 12, 13, 14, 17, 20, 22}; //columnas almacenadas en array... columnas importantes
-    int nColumns = sizeof(colsOfInterest) / sizeof(colsOfInterest[0]);
-
     fstream fin;
     fin.open("./" + fileName, ios::in);
     if (fin.fail()) {
@@ -33,13 +30,11 @@ void casos_edad(int n, string fileName) {
 
     vector<string> row;
     string line, word, edadaux;
-    int total = 0;
     int edadn = n;
 ArbolBinarioAVL<vector <string> > arbol;//inicio arbol
 
     while (getline(fin, line))
     {
-        total++;
         row.clear();
         stringstream s(line);
         

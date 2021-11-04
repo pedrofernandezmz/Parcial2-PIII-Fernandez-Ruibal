@@ -18,8 +18,6 @@
  */
 
 void casos_cui(string f, string fileName){
-int fecha = fechaint(f);
-
     fstream fin;
     fin.open("./" + fileName, ios::in);
     if (fin.fail()) {
@@ -31,14 +29,12 @@ int fecha = fechaint(f);
 if(!fin.fail()){
     vector<string> row;
     string line, word;
-   
-   int total = -1;
-   int fecha2 = 0;
+    int fecha2 = 0;
+    int fecha = fechaint(f);
 
 ArbolBinario<vector <string> > arbol; //genero arbol
     while (getline(fin, line))
     {
-        total++;
         row.clear();
         stringstream s(line);
         while (getline(s, word, ','))
