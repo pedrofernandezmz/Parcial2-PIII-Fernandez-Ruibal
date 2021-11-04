@@ -35,7 +35,7 @@ if(!fin.fail()){
    int total = -1;
    int fecha2 = 0;
 
-ArbolBinario<vector <string> > arbol;
+ArbolBinario<vector <string> > arbol; //genero arbol
     while (getline(fin, line))
     {
         total++;
@@ -45,26 +45,26 @@ ArbolBinario<vector <string> > arbol;
         {
             if (word.size() > 0)
             {
-                word = word.substr(1, word.size() - 2);
+                word = word.substr(1, word.size() - 2);//palabra sin espacio y comillas
             }
             else
             {
-                word = "NA";
+                word = "NA";//no hay nada
             }
             row.push_back(word);
           
         }
         
-        if (row[12].compare("SI") == 0 )
+        if (row[12].compare("SI") == 0 )//si estuvo en cuidados intensivos
         {
-            fecha2 = fechaint(row[13]);
+            fecha2 = fechaint(row[13]);//convierto fecha
 
-            if(fecha<=fecha2){
+            if(fecha<=fecha2){//comparo fechas
               arbol.put(row);
             }
         } 
     }
-    arbol.inorder();
+    arbol.inorder();//ordeno arbol
 }
 }
 
