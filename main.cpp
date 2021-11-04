@@ -8,6 +8,7 @@
 #include "Argumentos/p_casos.h"
 #include "Argumentos/p_muertes.h"
 #include "Argumentos/casos_edad.h"
+#include "Argumentos/casos_cui.h"
 
 using namespace std;
 
@@ -15,36 +16,42 @@ int main(int argc, char **argv)
 {
     time_t start = time(NULL);
     int n;
-    if (argc >= 3) {
-        if (std::string(argv[1]) == "-estad") {
-            estad(argv[2]);
+    if (argc >= 5) {
+        if (std::string(argv[2]) == "-estad") {
+            estad(argv[4]);
         }
-        if (std::string(argv[1]) == "-p_casos") {
+        if (std::string(argv[2]) == "-p_casos") {
             try {
-                n = std::stoi(argv[2]);
-                p_casos(n, argv[3]);
+                n = std::stoi(argv[3]);
+                p_casos(n, argv[5]);
             } catch (...) {
-                p_casos(0, argv[2]);
+                p_casos(0, argv[4]);
             }
         }
-        if (std::string(argv[1]) == "-p_muertes") {
+        if (std::string(argv[2]) == "-p_muertes") {
             try {
-                n = std::stoi(argv[2]);
-                p_muertes(n, argv[3]);
+                n = std::stoi(argv[3]);
+                p_muertes(n, argv[5]);
             } catch (...) {
-                p_muertes(0, argv[2]);
+                p_muertes(0, argv[4]);
             }
         }
-        if (std::string(argv[1]) == "-casos_edad") {
+        if (std::string(argv[2]) == "-casos_edad") {
             try {
-                n = std::stoi(argv[2]);
-                casos_edad(n, argv[3]);
+                n = std::stoi(argv[3]);
+                casos_edad(n, argv[5]);
             } catch (...) {
                 cout<<"NO INGRESO CANTIDAD DE ANOS!";
             }
         }
-        if (std::string(argv[1]) == "-casos_cui") {
-            cout<<"casoscui";
+        if (std::string(argv[2]) == "-casos_cui") {
+            string f;
+            try {
+                f = argv[3];
+                casos_cui(f, argv[5]);
+            } catch (...) {
+                cout<<"NO INGRESO FECHA!";
+            }
         }
     }else {
             cout<<"ARGUMENTOS INCORECCTOS";

@@ -1,46 +1,51 @@
-#ifndef U05_ARBOL_ARBOL_NODOARBOL_H_
-#define U05_ARBOL_ARBOL_NODOARBOL_H_
+#ifndef U05_ARBOL_ARBOL_NodoArbol_H_
+#define U05_ARBOL_ARBOL_NodoArbol_H_
 
 #include <string.h>
+#include "fecha.h"
 using namespace std;
 
 template <class T>
 class NodoArbol
 {
 private:
-  T data;
-  NodoArbol *left, *right;
+  vector<string> data;
+  NodoArbol<T> *left, *right;
+  int height;
 
 public:
   NodoArbol()
   {
     left = nullptr;
     right = nullptr;
+    height=1;
   }
 
-  NodoArbol(T d)
+  explicit NodoArbol(T data) : data(data)
   {
-    data = d;
+    //data = d;
     left = nullptr;
     right = nullptr;
+    height=1;
   }
 
-  T getData() const
+  T &getData() { return data; }
+
+  void setData(T data)
   {
-    return data;
+    this->data = data;
   }
-
-  void setData(T d)
+  int getClave()
   {
-    this->data = d;
+    return stoi(data[13]);
   }
 
-  NodoArbol *getRight() const
+  NodoArbol<T> *getRight() const
   {
     return right;
   }
 
-  void setRight(NodoArbol *r)
+  void setRight(NodoArbol<T> *r)
   {
     this->right = r;
   }
@@ -54,7 +59,16 @@ public:
     this->left = l;
   }
 
-   void print(bool esDerecho, string identacion) {
+  int getHeight() const 
+  {
+    return height;
+  }
+
+  void setHeight(int h){
+    height = h;
+  }
+
+  void print(bool esDerecho, string identacion) {
     if (right != NULL) {
         right->print(true, identacion + (esDerecho ? "     " : "|    "));
     }
@@ -71,6 +85,19 @@ public:
     }
 }
 
-  };
+void print(){
+         
+    int colsOfInterest[] = {2, 3, 7, 12, 13, 14, 17, 20};
+    int nColumns = sizeof(colsOfInterest) / sizeof(colsOfInterest[0]);
+            cout<<"Edad: "<<data[colsOfInterest[0]]<<" ";
+            cout<<data[colsOfInterest[1]]<<"   ";
+            cout<<"Provincia: "<<data[colsOfInterest[2]]<<"   ";
+            cout<<"CUI: "<<data[colsOfInterest[3]]<<"   ";
+            cout<<"Fecha CUI: "<<data[colsOfInterest[4]]<<"   ";
+            cout<<"Murio: "<<data[colsOfInterest[5]]<<"   ";
+            cout<<"Estado: "<<data[colsOfInterest[7]];
+            cout << endl;
+    }
 
-#endif // U05_ARBOL_ARBOL_NODOARBOL_H_
+};
+#endif // U05_ARBOL_ARBOL_NodoArbol_H_

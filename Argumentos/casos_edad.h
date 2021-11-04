@@ -25,6 +25,11 @@ void casos_edad(int n, string fileName) {
 
     fstream fin;
     fin.open("./" + fileName, ios::in);
+    if (fin.fail()) {
+        cout << "EL ARCHIVO NO EXISTE O NO SE PUEDE ABRIR!" << endl;
+        //return 1;
+    }
+    cout << "Calculando..." << endl;
 
     vector<string> row;
     string line, word, edadaux;
