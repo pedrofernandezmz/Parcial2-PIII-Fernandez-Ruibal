@@ -19,8 +19,9 @@ Cantidad de infectados por rango etario ( rango de 10 años)
 Cantidad de muertes por rango etario ( rango de 10 años)*
 ### Manual de uso:
 **covid19.exe [ Argumentos ] Covid19Casos.csv**
-Como por Ejemplo --> ./main [ -casos_cui 08-08-2020 ] Covid19Casos100000.csv
-                 --> ./main [ -p_muertes 5 ] Covid19Casos100000.csvs
+Como por Ejemplo:
+--> ./main [ -casos_cui 08-08-2020 ] Covid19Casos100000.csv
+--> ./main [ -p_muertes 5 ] Covid19Casos100000.csvs
 ### Argumentos posibles:
 - **-estad** *Mostrará la información estadística.*
 - **-p_casos [n]** *Mostrará las n primeras provincias con más contagios ordenadas de más a menos. Si n no es pasado, se mostrarán todas las provincias.*
